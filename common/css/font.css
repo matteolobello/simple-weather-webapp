@@ -1,0 +1,8 @@
+@font-face {
+    font-family: "CooperHewitt-Bold";
+    src: url("../font/CooperHewitt-Bold.woff") format('woff');
+}
+
+html, body {
+	font-family: "CooperHewitt-Bold";
+}

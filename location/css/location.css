@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background: black;
+    color: white;
+}
+
+#query {
+    background: #212121;
+    height: 90px;
+    width: 100vw;
+    color: white;
+    font-size: 32px;
+    padding-left: 4vw;
+    padding-right: 4vw;
+    border: none;
+    box-sizing: border-box;
+}
+
+#query:focus {
+    outline: none;
+}
+
+#result {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 4vw;
+    margin-right: 4vw;
+    list-style-type: none;
+    font-size: 22px;
+}
+
+#result > li {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

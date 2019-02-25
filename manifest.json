@@ -1,0 +1,12 @@
+{
+  "name": "Weather",
+  "short_name": "Weather",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "minimal-ui",
+  "orientation": "portrait",
+  "Scope": "/weather/",
+  "start_url": "/weather/",
+  "icons": null,
+  "splash_pages": null
+}
