@@ -2,6 +2,8 @@
 
 A simple ProgressiveWebApp that displays the weather with a simple interface.
 
+https://flamboyant-cray-0b32bb.netlify.com
+
 ### Note: change API keys in ./common/js/config.js
 
 <table>
