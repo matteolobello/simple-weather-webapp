@@ -1,26 +1,26 @@
 function loadWeatherForecast(lat, lon, callback) {
-    var body = makeHttpRequestAsync(BASE_URL + "&lat=" + lat + "&lon=" + lon, function(body) {
-        var jsonObj = JSON.parse(body);
-        var listJsonArray = jsonObj.list;
+    makeHttpRequestAsync(BASE_URL + "&lat=" + lat + "&lon=" + lon, function(body) {
+        let jsonObj = JSON.parse(body);
+        let listJsonArray = jsonObj.list;
 
-        var weatherForecast = [];
+        let weatherForecast = [];
 
-        for (var i = 0; i < listJsonArray.length; i++) {
-            var weatherJsonObj = listJsonArray[i];
+        for (let i = 0; i < listJsonArray.length; i++) {
+            let weatherJsonObj = listJsonArray[i];
 
-            var time = weatherJsonObj.dt_txt;
+            let time = weatherJsonObj.dt_txt;
 
-            var tempAverage = weatherJsonObj.main.temp;
-            var tempMin = weatherJsonObj.main.temp_min;
-            var tempMax = weatherJsonObj.main.temp_max;
-            var pressure = weatherJsonObj.main.pressure;
-            var humidity = weatherJsonObj.main.humidity;
+            let tempAverage = weatherJsonObj.main.temp;
+            let tempMin = weatherJsonObj.main.temp_min;
+            let tempMax = weatherJsonObj.main.temp_max;
+            let pressure = weatherJsonObj.main.pressure;
+            let humidity = weatherJsonObj.main.humidity;
 
-            var weatherTitle = weatherJsonObj.weather[0].main;
-            var weatherDescription = weatherJsonObj.weather[0].description;
-            var iconId = weatherJsonObj.weather[0].id;
+            let weatherTitle = weatherJsonObj.weather[0].main;
+            let weatherDescription = weatherJsonObj.weather[0].description;
+            let iconId = weatherJsonObj.weather[0].id;
 
-            var windSpeed = weatherJsonObj.wind.speed;
+            let windSpeed = weatherJsonObj.wind.speed;
 
             weatherForecast.push({
                 time: time,

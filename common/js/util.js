@@ -1,21 +1,21 @@
 function makeHttpRequest(url) {
-	var xmlHttp = new XMLHttpRequest();
+	  let xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", url, false);
     xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
 function makeHttpRequestAsync(url, onResult) {
-    var xmlhttp = new XMLHttpRequest();
+    let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         switch (xmlhttp.readyState) {
-          case 0 : // UNINITIALIZED
-          case 1 : // LOADING
-          case 2 : // LOADED
-          case 3 : // INTERACTIVE
+          case 0: // UNINITIALIZED
+          case 1: // LOADING
+          case 2: // LOADED
+          case 3: // INTERACTIVE
           break;
-          case 4 : // COMPLETED
-          onResult(xmlhttp.responseText);
+          case 4: // COMPLETED
+              onResult(xmlhttp.responseText);
           break;
           default: alert("error");
        }
@@ -70,7 +70,7 @@ function fade(options) {
     display: 'flex'
   }, options)
 
-  var isIn = options.type === 'in',
+  let isIn = options.type === 'in',
     opacity = isIn ? 0 : 1,
     interval = 50,
     gap = interval / options.duration
@@ -80,7 +80,7 @@ function fade(options) {
     options.el.style.opacity = opacity
   }
 
-  var fading = window.setInterval(function() {
+  let fading = window.setInterval(function() {
     opacity = isIn ? opacity + gap : opacity - gap
     options.el.style.opacity = opacity
 

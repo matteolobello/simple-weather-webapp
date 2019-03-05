@@ -4,21 +4,21 @@ const DEFAULT_LAT = "41.890251"
 const DEFAULT_LON = "12.492373"
 const DEFAULT_NAME = "Roma, Lazio, Italia"
 
-var WINDOW_HEIGHT = window.innerHeight 
+const WINDOW_HEIGHT = window.innerHeight 
 		|| document.documentElement.clientHeight 
 		|| document.body.clientHeight
 
 // Initialized inside onscroll function
-var dayLabelElements = null
+let dayLabelElements = null
 
 // Initialized in loadWeatherByLatLon function
-var swipeWrapperElement = null
-var loaderElement = null
+let swipeWrapperElement = null
+let loaderElement = null
 
 // Fetch cached data
-var locationName = localStorage.getItem("name")
-var locationLat = localStorage.getItem("lat")
-var locationLon = localStorage.getItem("lon")
+let locationName = localStorage.getItem("name")
+let locationLat = localStorage.getItem("lat")
+let locationLon = localStorage.getItem("lon")
 
 if (locationName == null || locationLat == null || locationLon == null) {
     locationName = DEFAULT_NAME
@@ -27,16 +27,16 @@ if (locationName == null || locationLat == null || locationLon == null) {
 }
 
 window.onscroll = function() {
-    var scrollY = window.scrollY
+    let scrollY = window.scrollY
 
-    var scrollPercentage = scrollY * 200 / WINDOW_HEIGHT
+    let scrollPercentage = scrollY * 200 / WINDOW_HEIGHT
 
     if (dayLabelElements == null || dayLabelElements.length == 0) {
         dayLabelElements = document.querySelectorAll(".page-top > .content > h1")
     }
 
-    for (var i = 0; i < dayLabelElements.length; i++) {
-        var newOpacity = parseFloat((100 - scrollPercentage) / 100).toFixed(1)
+    for (let i = 0; i < dayLabelElements.length; i++) {
+        let newOpacity = parseFloat((100 - scrollPercentage) / 100).toFixed(1)
         dayLabelElements[i].style.opacity = newOpacity
     }
 }
@@ -61,21 +61,26 @@ function fetchAndDispatchWeatherForecast(name, lat, lon) {
         })
 
         setTimeout(function() {
-            var groupedByDay = groupBy(constWeatherForecast, weather => weather.time.split(" ")[0])
+            let groupedByDay = groupBy(constWeatherForecast, weather => weather.time.split(" ")[0])
 
-            var baseDate = new Date()
+            let baseDate = new Date()
             baseDate.setDate(baseDate.getDate() - 1)
 
-            var counter = 0
+            let counter = 0
             while (true) {
                 counter++
 
                 baseDate.setDate(baseDate.getDate() + 1)
 
-                var dayAsString = baseDate.getFullYear() + "-" + addZeroIfNeeded(baseDate.getMonth() + 1) + "-" + baseDate.getDate()
-                var weatherForecast = groupedByDay.get(dayAsString)
+                let dayAsString = baseDate.getFullYear() + "-" + addZeroIfNeeded(baseDate.getMonth() + 1) + "-" + addZeroIfNeeded(baseDate.getDate())
+                let weatherForecast = groupedByDay.get(dayAsString)
                 if (weatherForecast == undefined) {
-                    break
+                    if (counter > 1) {
+                        break
+                    } else {
+                        // Skip today when there's no data
+                        continue
+                    }
                 }
 
                 swipeWrapperElement.innerHTML += buildSwiperPageLayout(weatherForecast, counter)
@@ -97,7 +102,7 @@ function fetchAndDispatchWeatherForecast(name, lat, lon) {
 }
 
 function buildSwiperPageLayout(weatherForecastForThatDay, id) {
-    var h = "<div class='swiper-slide'>"
+    let h = "<div class='swiper-slide'>"
     h += "	<div class='page-top'>"
 
     if (id == 1)
@@ -111,8 +116,8 @@ function buildSwiperPageLayout(weatherForecastForThatDay, id) {
     h += "   	<div style='overflow-x: auto; width: 100vw'>"
     h += "			<table>"
 
-    for (var i = 0; i < weatherForecastForThatDay.length; i++) {
-        var weather = weatherForecastForThatDay[i]
+    for (let i = 0; i < weatherForecastForThatDay.length; i++) {
+        let weather = weatherForecastForThatDay[i]
         h += "			<tr>"
         h += "				<td>" + getFormattedTime(weather) + "</td>"
         h += "				<td>" + kelvinToCelsius(weather.tempAverage) + "°C" + "</td>"
@@ -139,6 +144,6 @@ function getTitleByPageId(weather, id) {
 }
 
 function getFormattedTime(weather) {
-    var time = weather.time.split(" ")[1]
+    let time = weather.time.split(" ")[1]
     return time.split(":")[0] + ":" + time.split(":")[1]
 }

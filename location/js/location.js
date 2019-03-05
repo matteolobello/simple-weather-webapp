@@ -20,13 +20,13 @@ function saveCookies(name, lat, lon) {
 function searchAndDispatch(query) {
     resultElement.innerHTML = ""
 
-    var body = makeHttpRequestAsync(BASE_URL + query, function(body) {
-        var jsonObj = JSON.parse(body);
-        var locationsJsonArray = jsonObj.Response.View[0].Result
+    let body = makeHttpRequestAsync(BASE_URL + query, function(body) {
+        let jsonObj = JSON.parse(body);
+        let locationsJsonArray = jsonObj.Response.View[0].Result
 
-        var locations = []
-        for (var i = 0; i < locationsJsonArray.length; i++) {
-            var locationJsonObj = locationsJsonArray[i]
+        let locations = []
+        for (let i = 0; i < locationsJsonArray.length; i++) {
+            let locationJsonObj = locationsJsonArray[i]
 
             locations.push({
                 name: locationJsonObj.Location.Address.Label,
@@ -35,8 +35,8 @@ function searchAndDispatch(query) {
             })
         }
 
-        for (var i = 0; i < locations.length; i++) {
-            var location = locations[i]
+        for (let i = 0; i < locations.length; i++) {
+            let location = locations[i]
 
             resultElement.innerHTML += "<li onClick=\"saveCookies(" + "'" + location.name + "'" + "," + "'" + location.lat + "'" + "," + "'" + location.lon + "'" + ")\">" + location.name + "</li>"
         }
