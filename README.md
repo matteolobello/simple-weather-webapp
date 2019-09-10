@@ -1,4 +1,4 @@
-# WeatherPWA
+# SimpleWeatherWebApp
 
 A simple ProgressiveWebApp that displays the weather with a simple interface.
 
