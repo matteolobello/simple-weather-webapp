@@ -1,6 +1,4 @@
-# SimpleWeatherWebApp
-
-A simple ProgressiveWebApp that displays the weather with a simple interface.
+# SimpleWeather WebApp
 
 ### Note: change API keys in ./common/js/config.js
 
